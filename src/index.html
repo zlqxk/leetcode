@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function ListNode(val, next) {
+      this.val = val === undefined ? 0 : val;
+      this.next = next === undefined ? null : next;
+    }
+    function arr2Link(arr) {
+      let root = new ListNode();
+      arr.reduce((prev, cur) => {
+        let node = new ListNode(cur);
+        prev.next = node;
+        return node;
+      }, root);
+      return root.next;
+    }
+  </script>
+  <script src="./divide-and-conquer/median-of-two-sorted-arrays.js"></script>
+</html>
