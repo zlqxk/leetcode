@@ -7,14 +7,12 @@
   
   示例 1：
 
-  输入：nums = [10,11,9,5,8,7,101,18]
-              [1 ,2 ,1,1,2,2,3  ,3]
+  输入：nums = [10,9,2,5,3,7,101,18]
   输出：4
   解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。
   示例 2：
 
   输入：nums = [0,1,0,3,2,3]
-              [1,2,1,3]
   输出：4
   示例 3：
 
@@ -23,29 +21,31 @@
  */
 
 /**
+ * dp[i]代表 0...i的最长递增子序列长度
+ * 边界
+ * dp[0] = 1
+ * 转移方程
+ * dp[i] = nums[j] < nums[i] && Math.max(dp[j]) + 1
  * @param {number[]} nums
  * @return {number}
- * 最值问题考虑动态规划
- * dp[0] = 1
- * dp[i] = Math.max(dp[j]) + 1
- * 当前位置的最长子序列等于之前的比他小的最长子序列+1
  */
 var lengthOfLIS = function (nums) {
-  let dp = [1];
-  let res = 1;
-  for (let i = 1; i < nums.length; i++) {
-    let jMax = 0;
+  const dp = [1];
+  let max = 1;
+  for (let i = 0; i < nums.length; i++) {
+    // 找最大的dp[j]
+    let maxDp = 0;
     for (let j = 0; j < i; j++) {
-      if (nums[j] < nums[i]) {
-        jMax = Math.max(jMax, dp[j]);
+      if (nums[j] >= nums[i]) {
+        continue;
       }
+      maxDp = Math.max(maxDp, dp[j]);
     }
-    dp[i] = jMax + 1;
-    res = Math.max(res, jMax + 1);
+    dp[i] = maxDp + 1;
+    max = Math.max(max, dp[i]);
   }
-  console.log(dp);
-  return res;
+  return max;
 };
 
-const res = lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]);
+const res = lengthOfLIS([1, 3, 6, 7, 9, 4, 10, 5, 6]);
 console.log("res: ", res);

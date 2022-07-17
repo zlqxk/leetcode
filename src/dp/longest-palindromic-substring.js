@@ -14,14 +14,16 @@
  */
 
 /**
+ * dp[i][j] 表示 s(i...j) 是否是回文子串
+ * 边界
+ * dp[i][i] = 1
+ * 转移方程
+ * if s[i] === s[j]
+ * dp[i][j] = dp[i - 1][j - 1] ? true : false
+ * else 
+ * dp[i][j] = false
  * @param {string} s
  * @return {string}
- * 最值问题可以考虑使用动态规划
- * 转移方程
- * len === 1 true
- * len >= 2 dp[i][j] = dp[i + 1][j - 1] && s[i] === s[j]
- * 先从两个一组开始，一直到len个一组
- * 如果减一以后越界则不符合
  */
 var longestPalindrome = function (s) {
   let maxLen = 1;

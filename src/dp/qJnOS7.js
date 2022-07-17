@@ -31,15 +31,17 @@
  */
 
 /**
+ * dp[i][j] 表示 text1(0...i)和text2(0...j)的最长公共子序列长度
+ * 边界
+ * 无
+ * 转移方程
+ * if text[i] === text[j]
+ * dp[i][j] = dp[i - 1][j - 1] + 1
+ * else
+ * dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j])
  * @param {string} text1
  * @param {string} text2
  * @return {number}
- * 最值问题，可以考虑动态规划
- * dp[i][j] 表示 text1[0:j] 和 text2[0:j] 的最长公共子序列
- * dp[0][j] = 0
- * dp[i][0] = 0
- * text1[i] === text2[j] -> dp[i][j] = dp[i-1][j-1] + 1
- * text1[i] !== text2[j] -> dp[i][j] = Math.max(dp[i][j-1], dp[i-1][j])
  */
 var longestCommonSubsequence = function (text1, text2) {
   const dp = new Array(text1.length + 1)

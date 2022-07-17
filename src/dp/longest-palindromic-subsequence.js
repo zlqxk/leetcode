@@ -18,12 +18,14 @@
  */
 
 /**
- * 最值问题，动态规划
- * 定义dp[i][j]的含义是字符串s(i...j)的最长子序列长度
- * 边界值dp[i][i+1]都为1
- * 所以从长度2一直遍历到长度len
- * s[i] === s[j] -> dp[i][j] = dp[i + 1][j - 1] + 2
- * s[i] !== s[j] -> dp[i][j] = Math.max(dp[i + 1][j],dp[i, j - 1])
+ * dp[i][j]表示s(i...j)的最长回文子序列长度
+ * 边界
+ * dp[i][i] = 1
+ * 转移方程
+ * if s[i] === s[j]
+ * dp[i][j] = dp[i - 1][j - 1] + 2
+ * else
+ * dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1])
  * @param {string} s
  * @return {number}
  */
