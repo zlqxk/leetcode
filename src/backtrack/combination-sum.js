@@ -25,6 +25,10 @@
  */
 
 /**
+ * 从数组第一个元素开始递归
+ * 递归的下一个数组是从当前元素位置开始，这样可以避免重复
+ * 退出递归的条件为当前的和大于target或者等于target，等于的话记录下来
+ * 每次执行完回溯
  * @param {number[]} candidates
  * @param {number} target
  * @return {number[][]}

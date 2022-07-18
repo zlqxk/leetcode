@@ -35,10 +35,8 @@ var reverseKGroup = function (head, k) {
     prev = head;
     head = nextHead;
   }
-  return mHead;
+  return mHead.next;
 };
-
-reverseKGroup(arr2Link([1, 2, 3, 4, 5, 6, 7, 8]), 3);
 
 /**
  * 1->2->3->4
@@ -79,3 +77,5 @@ function getTail(nodeList, k) {
     }
   }
 }
+
+reverseKGroup(arr2Link([1, 2, 3, 4, 5, 6, 7, 8]), 3);

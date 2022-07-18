@@ -26,17 +26,16 @@
 
 /**
  * 最值问题使用动态规划
- * dp2[i]表示子序列是偶数个的时候nums(0...i)的最大和
- * dp[i]表示子序列是奇数个的时候nums(0...i)的最大和
+ * dp1[i] 表示 nums[0..i] 奇数个数时的最大和
+ * dp2[i] 表示 nums[0..i] 偶数个数时的最大和
  * 边界
- * dp[0][0] = nums[0]
- * dp[0][1] = 0
+ * dp1[0] = 0
+ * dp2[0] = nums[0]
  * 转移方程
- * 如果选完了是偶数
- * dp[i][0] = Math.max(dp[i - 1][1], dp[i - 1][1] + nums[i])
- * 如果选完了是奇数
- * dp[i][1] = Math.max(dp[i - 1][0], dp[i - 1][0] - nums[i])
- * 所以当前最大的子序列和为
+ * dp1[i] = Math.max(dp2[i - 1] - nums[i], dp1[i])
+ * dp2[i] = Math.max(dp1[i - 1] + nums[i], dp2[i])
+ * 返回dp1[i]和dp2[i]的最大值
+ * dp2[i]一定最大
  * @param {number[]} nums
  * @return {number}
  */

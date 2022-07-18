@@ -26,7 +26,8 @@
 /**
  * @param {number[][]} grid
  * @return {number}
- * 本质就是网格的遍历，每遇到一次边界就加1
+ * 从第一个是陆地的节点开始遍历，向上下左右遍历，如果遇到岛屿就将其设置为-1，遇到水域则周长+1
+ * 递归的终止条件是越界
  */
 var islandPerimeter = function (grid) {
   let count = 0;

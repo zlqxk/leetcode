@@ -4,7 +4,6 @@
 
   子序列定义为：不改变剩余字符顺序的情况下，删除某些字符或者不删除任何字符形成的一个序列。
 
-
   示例 1：
 
   输入：s = "bbbab"
@@ -18,14 +17,14 @@
  */
 
 /**
- * dp[i][j]表示s(i...j)的最长回文子序列长度
+ * dp[i][j] 表示 s[i..j]的最长回文子序列长度
  * 边界
  * dp[i][i] = 1
  * 转移方程
- * if s[i] === s[j]
- * dp[i][j] = dp[i - 1][j - 1] + 2
+ * if nums[i] === nums[j]
+ * dp[i][j] = dp[i - 1][j - 1] + 1
  * else
- * dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1])
+ * dp[i][j] = max(dp[i][j - 1], dp[i - 1][j])
  * @param {string} s
  * @return {number}
  */

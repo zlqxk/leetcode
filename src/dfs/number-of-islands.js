@@ -31,7 +31,7 @@
 /**
  * @param {character[][]} grid
  * @return {number}
- * 网格的深度优先遍历，每遍历一个都将其设置成2
+ * 看执行了几次dfs
  */
 var numIslands = function (grid) {
   function dfs(x, y) {

@@ -29,6 +29,7 @@
 /**
  * @param {number[]} prices
  * @return {number}
+ * 如果前一天比上一天多久买入
  */
 var maxProfit = function (prices) {
   let ans = 0;

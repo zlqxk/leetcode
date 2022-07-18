@@ -25,6 +25,9 @@
 /**
  * @param {number[][]} grid
  * @return {number}
+ * 从第一个是岛屿的元素开始上下左右递归
+ * 遇到岛屿面积加1，元素设置-1
+ * 递归的终止条件元素不等于1和越界
  */
 var maxAreaOfIsland = function (grid) {
   function dfs(i, j) {

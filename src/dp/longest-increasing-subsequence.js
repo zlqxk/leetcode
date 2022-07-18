@@ -21,11 +21,11 @@
  */
 
 /**
- * dp[i]代表 0...i的最长递增子序列长度
+ * dp[i] 表示 nums[0...i] 的最长递增子序列长度
  * 边界
  * dp[0] = 1
  * 转移方程
- * dp[i] = nums[j] < nums[i] && Math.max(dp[j]) + 1
+ * dp[i] = nums[i] > nums[j] && Max(dp[0]...dp[j]) + 1
  * @param {number[]} nums
  * @return {number}
  */

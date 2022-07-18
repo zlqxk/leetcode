@@ -21,7 +21,7 @@
  * @return {ListNode}
  * 使用归并排序
  * 将链表以中点拆分，中点可以通过快慢指针来获得
- * 一直拆到只有两个或者一个节点
+ * 一直拆到只有一个节点
  */
 function sortList(head, tail = null) {
   if (head === null) {
