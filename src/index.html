@@ -31,22 +31,22 @@
     }
   </script>
   <script>
-    let index = 0;
-    let fn = null;
+    // let index = 0;
+    // let fn = null;
 
-    function render(state) {
-      const add = () => state + 1;
-      fn = add;
-      console.log("state: ", state); // 0 -> 1 -> 1 -> 1....
-      if (index === 0) {
-        setInterval(() => {
-          render(fn());
-        }, 1000);
-      }
-      index++;
-    }
+    // function render(state) {
+    //   const add = () => state + 1;
+    //   fn = add;
+    //   console.log("state: ", state); // 0 -> 1 -> 1 -> 1....
+    //   if (index === 0) {
+    //     setInterval(() => {
+    //       render(fn());
+    //     }, 1000);
+    //   }
+    //   index++;
+    // }
 
-    render(0);
+    // render(0);
   </script>
-  <script src="./compare-version-numbers.js"></script>
+  <!-- <script src="./binary-tree-right-side-view.js"></script> -->
 </html>
