@@ -19,7 +19,7 @@
  * dp[i][i] = 1
  * 转移方程
  * if s[i] === s[j]
- * dp[i][j] = dp[i - 1][j - 1] ? true : false
+ * dp[i][j] = dp[i + 1][j - 1] ? true : false
  * else 
  * dp[i][j] = false
  * @param {string} s

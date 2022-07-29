@@ -22,9 +22,9 @@
  * dp[i][i] = 1
  * 转移方程
  * if nums[i] === nums[j]
- * dp[i][j] = dp[i - 1][j - 1] + 1
+ * dp[i][j] = dp[i + 1][j - 1] + 2
  * else
- * dp[i][j] = max(dp[i][j - 1], dp[i - 1][j])
+ * dp[i][j] = max(dp[i][j - 1], dp[i + 1][j])
  * @param {string} s
  * @return {number}
  */

@@ -14,6 +14,7 @@
 
   输入：head = []
   输出：[]
+  1 -> 2 -> 3
  */
 
 /**
@@ -24,13 +25,17 @@
  * 一直拆到只有一个节点
  */
 function sortList(head, tail = null) {
+  // 如果只有一个节点就返回这个节点
   if (head === null) {
     return head;
   }
+  // 因为递归的时候尾结点会当做上一个的尾结点和下一个的头结点
+  // 所以我们只以头结点为准就可以
   if (head.next === tail) {
     head.next = null;
     return head;
   }
+  // 找到中点
   let slow = head,
     fast = head;
   while (fast !== tail) {

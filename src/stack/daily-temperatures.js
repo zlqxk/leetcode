@@ -48,9 +48,7 @@ var dailyTemperatures = function (temperatures) {
       index: i,
     });
   }
-  console.log('stack: ', stack);
   stack.forEach((item) => result[item.index] = 0);
-  console.log('result: ', result);
   return result;
 };
 

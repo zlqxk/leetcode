@@ -23,11 +23,7 @@
   输出：0
   解释：两个字符串没有公共子序列，返回 0 。
 
-  a, ace
-  ab,ace
-  abe[c],ab[e] -> abec,ab  abe,abe
-  abcd,ace
-  abcde,ace
+
  */
 
 /**
