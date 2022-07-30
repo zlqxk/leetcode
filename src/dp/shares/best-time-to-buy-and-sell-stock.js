@@ -22,23 +22,39 @@
  */
 
 /**
+ * 每一天都有两个状态，一个是持有股票，一个是不持有股票
+ * dp[0][i] 在第i天之前卖出股票所能获得的最大利润
+ * dp[1][i] 在第i天之前买入股票所能获得的最大利润
+ * 今天不持有
+ * dp[0][i] = Math.max(dp[0][i - 1], dp[1][i - 1] + prices[i]);
+ * 今天持有
+ * dp[1][i] = Math.max(dp[1][i - 1], -prices[i]);
+ * 边界
+ * dp[0][0] = 0;
+ * dp[1][0] = -prices[0];
  * @param {number[]} prices
  * @return {number}
- * 如果你知道每一天卖出能获得的最大收益，最后去所有天数的收益里面最大值。
- * 记录最小的价格，用当天的价格减去最小的价格，这就是当前的最大收益
- * 需要两个标记
- * 1、当天最大收益 = 当天价格 - 这天之前的最小价格
- * 2、这天之前的最小价格
  */
 var maxProfit = function (prices) {
-  let dpMax = 0;
-  let min = prices[0];
-  for (let i = 1; i < prices.length; i++) {
-    min = Math.min(min, prices[i]);
-    dpMax = Math.max(dpMax, prices[i] - min);
+  let dp = [[], []];
+  dp[0][0] = 0;
+  dp[1][0] = -prices[0];
+  for (let i = 0; i < prices.length; i++) {
+    dp[0][i] = Math.max(dp[0][i - 1], dp[1][i - 1] + prices[i]);
+    dp[1][i] = Math.max(dp[1][i - 1], -prices[i]);
   }
-  return dpMax;
+  return dp[0][prices.length - 1];
 };
 
-const res = maxProfit([7, 6, 4, 3, 1]);
+var maxProfit2 = function (prices) {
+  let dp_0_i = 0;
+  let dp_1_i = -prices[0];
+  for (let i = 0; i < prices.length; i++) {
+    dp_0_i = Math.max(dp_0_i, dp_1_i + prices[i]);
+    dp_1_i = Math.max(dp_1_i, -prices[i]);
+  }
+  return dp_0_i;
+};
+
+const res = maxProfit([7, 1, 5, 3, 6, 4]);
 console.log("res: ", res);

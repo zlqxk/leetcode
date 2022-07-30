@@ -27,18 +27,36 @@
  */
 
 /**
+ * dp[0][i] 表示第i天不持有股票的最大收益
+ * dp[1][i] 表示第i天持有股票的最大收益
+ * dp[0][i] = Math.max(dp[0][i - 1], dp[1][i - 1] + prices[i])
+ * dp[1][i] = Math.max(dp[1][i - 1], dp[0][i - 1] - prices[i])
+ * 边界
+ * dp[0][0] = 0
+ * dp[1][0] = -prices[0]
  * @param {number[]} prices
  * @return {number}
- * 如果前一天比上一天多久买入
  */
 var maxProfit = function (prices) {
-  let ans = 0;
-  let n = prices.length;
-  for (let i = 1; i < n; ++i) {
-    ans += Math.max(0, prices[i] - prices[i - 1]);
+  let dp = [[], []];
+  dp[0][0] = 0;
+  dp[1][0] = -prices[0];
+  for (let i = 1; i < prices.length; i++) {
+    dp[0][i] = Math.max(dp[0][i - 1], dp[1][i - 1] + prices[i]);
+    dp[1][i] = Math.max(dp[1][i - 1], dp[0][i - 1] - prices[i]);
   }
-
-  return ans;
+  return dp[0][prices.length - 1];
 };
 
-maxProfit([1, 2, 3, 4, 5]);
+var maxProfit2 = function (prices) {
+  let dp_0_i = 0;
+  let dp_1_i = -prices[0];
+  for (let i = 1; i < prices.length; i++) {
+    dp_0_i = Math.max(dp_0_i, dp_1_i + prices[i]);
+    dp_1_i = Math.max(dp_1_i, dp_0_i - prices[i]);
+  }
+  return dp_0_i;
+};
+
+const res = maxProfit([7, 1, 5, 3, 6, 4]);
+console.log("res: ", res);
