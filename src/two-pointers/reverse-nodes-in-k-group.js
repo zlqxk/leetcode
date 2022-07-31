@@ -14,68 +14,45 @@
  * @param {ListNode} head
  * @param {number} k
  * @return {ListNode}
- * 翻转k个节点，就是记录一个头结点，走k次next，得到一个小的链表，然后将这个小链表翻转
- * 翻转完小链表需要将这个小链表的头尾节点和原来的链表接上
- * 需要记录小链表左右两侧的节点
- * 需要记录小链表的头尾节点
- * 一共需要记录四个节点
  */
 var reverseKGroup = function (head, k) {
-  const mHead = new ListNode(null);
-  mHead.next = head;
-  let prev = mHead;
+  let dummy = new ListNode(null, head);
+  let move = dummy;
   while (head) {
-    // 要翻转链表的尾结点
     const tail = getTail(head, k);
-    // 先记录一下下次循环要翻转的链表的头结点
-    const nextHead = tail.next;
-    // 翻转后链表的头结点
-    const reverseHead = reverseList(head, tail);
-    prev.next = reverseHead;
-    prev = head;
+    // 暂存下一次翻转的head
+    let nextHead = tail.next;
+    const res = reverse(head, tail);
+    move.next = res;
+    move = head;
     head = nextHead;
   }
-  return mHead.next;
+  return dummy.next;
 };
 
-/**
- * 1->2->3->4
- * 4->3->2->1
- * @param {*} head
- * @param {*} tail
- * @returns
- */
-function reverseList(head, tail) {
-  let left = tail.next;
-  let right = head;
-  while (left !== tail) {
-    const next = right.next;
-    right.next = left;
-    left = right;
-    right = next;
-  }
-  return tail;
-}
-
-/**
- * a -> b -> c -> d,  3
- *
- * @param {*} nodeList
- * @param {*} k
- * @returns 第k个节点
- */
-function getTail(nodeList, k) {
-  let move = nodeList;
-  let index = 0;
-  while (true) {
-    index++;
-    if (move) {
-      if (index === k) return move;
+function getTail(head, k) {
+  let move = new ListNode(null, head);
+  for (let i = 0; i < k; i++) {
+    if (move.next) {
       move = move.next;
     } else {
-      return nodeList;
+      return head;
     }
   }
+  return move;
+}
+
+function reverse(head, tail) {
+  let result = head;
+  let move = head.next;
+  result.next = null;
+  while (result !== tail) {
+    const next = move.next;
+    move.next = result;
+    result = move;
+    move = next;
+  }
+  return result;
 }
 
 reverseKGroup(arr2Link([1, 2, 3, 4, 5, 6, 7, 8]), 3);
