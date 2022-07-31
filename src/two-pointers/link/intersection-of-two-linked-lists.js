@@ -40,4 +40,21 @@
  * @param {ListNode} headB
  * @return {ListNode}
  */
-var getIntersectionNode = function (headA, headB) {};
+var getIntersectionNode = function (headA, headB) {
+  let moveA = headA;
+  let moveB = headB;
+  while (true) {
+    if (moveA === moveB) return moveA;
+    if (moveA.next === null && moveB.next === null) return null;
+    if (moveA.next === null) {
+      moveA = headB;
+    } else {
+      moveA = moveA.next;
+    }
+    if (moveB.next === null) {
+      moveB = headA;
+    } else {
+      moveB = moveB.next;
+    }
+  }
+};
