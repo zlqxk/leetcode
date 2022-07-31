@@ -19,29 +19,23 @@
  */
 
 /**
+ * dp[i] = dp[i - 1], dp[i - 2] + nums[i]
  * @param {number[]} nums
  * @return {number}
- * 最值问题，考虑使用动态规划
- * 当前所能偷的最大金额等于紧邻的最大金额 （因为紧邻着所以不能偷这家了，所以最大金额就是上一家）
- * 和紧邻的前一家的最大金额加上自身
- * dp[0] = nums[0]
- * dp[1] = Max(nums[0],num[1])
- * dp[i] = Max(dp[i - 1], dp[i - 2] + num[i])
  */
 var rob = function (nums) {
+  if (nums.length === 0) return 0;
   if (nums.length === 1) return nums[0];
-  const max = Math.max(nums[0], nums[1]);
-
-  let dp = [nums[0], max];
+  let prev_prev = nums[0];
+  let prev = Math.max(nums[0], nums[1]);
   for (let i = 2; i < nums.length; i++) {
-    dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+    let tem = prev;
+    prev = Math.max(prev, prev_prev + nums[i]);
+    prev_prev = tem;
   }
-  // 此处还可以只用两个值来代替dpList
-  return dp[nums.length - 1];
+  return prev;
 };
 
-// const res = rob([1, 2, 3, 1]);
-const res = rob([2, 7]);
-// const res = rob([1, 2, 3, 1]);
+const res = rob([1, 2, 3, 1]);
 
 console.log("res: ", res);

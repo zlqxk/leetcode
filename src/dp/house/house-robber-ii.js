@@ -24,12 +24,10 @@
 /**
  * @param {number[]} nums
  * @return {number}
- * 和第一版一样的思路
- * 分别记录下偷第一家和不偷第一家
  */
 var rob = function (nums) {
+  if (nums.length === 0) return 0;
   if (nums.length === 1) return nums[0];
-  if (nums.length === 2) return Math.max(nums[0], nums[1]);
 
   return Math.max(
     robRange(nums, 0, nums.length - 2),
@@ -37,17 +35,18 @@ var rob = function (nums) {
   );
 };
 
-var robRange = function (nums, start, end) {
-  let first = nums[start];
-  let second = Math.max(nums[start], nums[start + 1]);
+function robRange(nums, start, end) {
+  if (start === end) return nums[start];
+  let prev_prev = nums[start];
+  let prev = Math.max(nums[start], nums[start + 1]);
+
   for (let i = start + 2; i <= end; i++) {
-    const tmp = second;
-    second = Math.max(second, first + nums[i]);
-    first = tmp;
+    let tem = prev;
+    prev = Math.max(prev, prev_prev + nums[i]);
+    prev_prev = tem;
   }
 
-  return second;
-};
-
+  return prev;
+}
 const res = rob([1, 2, 3, 1]);
 console.log("res: ", res);
