@@ -41,16 +41,17 @@
  */
 var maxAlternatingSum = function (nums) {
   // 初始化dp
-  const dp2 = [nums[0]];
-  const dp = [0];
+  const dp1 = [0];
+  const dp0 = [nums[0]];
   for (let i = 1; i < nums.length; i++) {
-    dp2[i] = Math.max(dp2[i - 1], dp[i - 1] + nums[i]);
-    dp[i] = Math.max(dp[i - 1], dp2[i - 1] - nums[i]);
+    dp1[i] = Math.max(dp1[i - 1], dp0[i - 1] - nums[i]);
+    dp0[i] = Math.max(dp0[i - 1], dp1[i - 1] + nums[i]);
   }
-  console.log("dp2: ", dp2);
-  console.log("dp: ", dp);
-  return dp2[nums.length - 1];
+  console.log("dp1: ", dp1);
+  console.log("dp0: ", dp0);
+  return dp0[nums.length - 1];
 };
 
-maxAlternatingSum([4, 2, 5, 3]);
+const res = maxAlternatingSum([4, 2, 5, 3]);
+console.log("res: ", res);
 // [10, 2, 1, 2, 4, 5]
