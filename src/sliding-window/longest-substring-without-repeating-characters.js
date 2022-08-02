@@ -30,18 +30,19 @@
  * @param {*} s
  */
 var lengthOfLongestSubstring = function (s) {
-  let start = 0;
-  let end = 0;
-  let hashMap = new Map();
+  let windowMap = new Map();
+  let left = 0;
+  let right = 0;
   let max = 0;
-  while (end <= s.length) {
-    max = Math.max(max, end - start);
-    if (hashMap.has(s[end])) {
-      const index = hashMap.get(s[end]);
-      start = Math.max(start, index + 1);
+  while (right < s.length) {
+    let rightStr = s[right];
+    if (windowMap.has(rightStr)) {
+      const prevIndex = windowMap.get(rightStr) + 1;
+      left = Math.max(left, prevIndex);
     }
-    hashMap.set(s[end], end);
-    end++;
+    windowMap.set(rightStr, right);
+    max = Math.max(max, right - left + 1);
+    right++;
   }
   return max;
 };
