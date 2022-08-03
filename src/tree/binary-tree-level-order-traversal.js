@@ -26,16 +26,19 @@
  */
 var levelOrder = function (root) {
   let queue = [root];
+  let result = [];
   while (queue.length) {
-    const node = queue.shift();
-    console.log('node: ', node.val);
-    if (node.left) {
-      queue.push(node.left);
+    const len = queue.length;
+    const combine = [];
+    for (let i = 0; i < len; i++) {
+      const node = queue.shift();
+      combine.push(node.val);
+      node.left && queue.push(node.left);
+      node.right && queue.push(node.right);
     }
-    if (node.right) {
-      queue.push(node.right);
-    }
+    result.push(combine);
   }
+  return result;
 };
 
 const tree = {
@@ -54,5 +57,5 @@ const tree = {
   },
 };
 
-const res = levelOrder(tree);
+const res = levelOrder(tree); // 3,9,20,15,7
 console.log("res: ", res);
