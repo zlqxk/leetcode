@@ -25,7 +25,6 @@
  * 一直拆到只有一个节点
  */
 function sortList(head, tail = null) {
-  // 如果只有一个节点就返回这个节点
   if (head === null) {
     return head;
   }
